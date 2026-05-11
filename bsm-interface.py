@@ -709,7 +709,7 @@ if page == "🏠  Dashboard":
     render_hero(
         "Dashboard Klasifikasi BSM",
         "Sistem Machine Learning Naive Bayes untuk Klasifikasi Penerima Bantuan Siswa Miskin",
-        "Machine Learning · Naive Bayes · Skripsi"
+        "Machine Learning · Naive Bayes ·"
     )
 
     # Quick stats jika dataset sudah dimuat
@@ -1628,7 +1628,7 @@ elif page == "💾  Export Hasil":
                 )
 
         st.markdown("<br>", unsafe_allow_html=True)
-        alert("File Excel yang diunduh sudah diformat rapi dan siap untuk lampiran skripsi.")
+        alert("File Excel yang diunduh sudah diformat rapi.")
 
 
 # ─────────────────────────────────────────────────────────────
