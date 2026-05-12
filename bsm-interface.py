@@ -1215,7 +1215,7 @@ def preprocess_batch_data(df_input):
     ) / scaler.scale_[0]
     
     feature_cols = ['KELAS_NUM', 'PENDAPATAN_ZSCORE', 'PEKERJAAN_ENC', 
-                   'JUMLAH TANGGUNGAN', 'STATUS RUMAH_ENC']
+                   'JUMLAH TANGGUNGAN', 'STATUS_RUMAH_ENC']
     
     X = df_processed[feature_cols].values
     
@@ -1389,23 +1389,32 @@ def handle_training_only_mode():
     st.info("""
     ℹ️ Karena **Testing = 0%**, semua data digunakan untuk training dan tidak ada data testing otomatis.
     
-    Silakan upload file Excel **berlabel** (memiliki kolom LABEL) untuk mengevaluasi model.
+    Silakan upload file Excel/CSV **berlabel** (memiliki kolom LABEL) untuk mengevaluasi model.
     File akan diproses menggunakan encoder dan scaler yang sama dari data training.
     """)
     
     uploaded_test = st.file_uploader(
-        "Upload Data Testing Manual (.xlsx)",
-        type=['xlsx'],
+        "Upload Data Testing Manual (.xlsx atau .csv)",
+        type=['xlsx', 'csv'],
         key='test_upload_training_only',
-        help="File Excel dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
+        help="File dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
     )
     
     if uploaded_test is not None:
         try:
-            df_test_raw = pd.read_excel(uploaded_test, sheet_name=0, header=1)
-            if len(df_test_raw.columns) < 14:
-                uploaded_test.seek(0)
-                df_test_raw = pd.read_excel(uploaded_test, sheet_name=0)
+            # Deteksi tipe file dan baca sesuai format
+            if uploaded_test.name.endswith('.csv'):
+                df_test_raw = pd.read_csv(uploaded_test)
+            else:
+                try:
+                    df_test_raw = pd.read_excel(uploaded_test, sheet_name=0, header=1)
+                except Exception:
+                    uploaded_test.seek(0)
+                    df_test_raw = pd.read_excel(uploaded_test, sheet_name=0)
+                if len(df_test_raw.columns) < 14:
+                    uploaded_test.seek(0)
+                    df_test_raw = pd.read_excel(uploaded_test, sheet_name=0)
+            
             df_test_raw = df_test_raw.dropna(how='all')
             
             st.success(f"✅ File berhasil dimuat: {len(df_test_raw)} baris")
@@ -1529,23 +1538,32 @@ def handle_testing_only_mode():
     st.warning("""
     ⚠️ Karena **Testing = 100%**, semua data dianggap sebagai data testing dan tidak ada data training.
     
-    Silakan upload file Excel untuk digunakan sebagai **data training**. 
+    Silakan upload file Excel/CSV untuk digunakan sebagai **data training**. 
     Setelah model dilatih, dataset awal akan digunakan sebagai data testing untuk evaluasi.
     """)
     
     uploaded_train = st.file_uploader(
-        "Upload Data Training Manual (.xlsx)",
-        type=['xlsx'],
+        "Upload Data Training Manual (.xlsx atau .csv)",
+        type=['xlsx', 'csv'],
         key='train_upload_testing_only',
-        help="File Excel dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
+        help="File dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
     )
     
     if uploaded_train is not None:
         try:
-            df_train_raw = pd.read_excel(uploaded_train, sheet_name=0, header=1)
-            if len(df_train_raw.columns) < 14:
-                uploaded_train.seek(0)
-                df_train_raw = pd.read_excel(uploaded_train, sheet_name=0)
+            # Deteksi tipe file dan baca sesuai format
+            if uploaded_train.name.endswith('.csv'):
+                df_train_raw = pd.read_csv(uploaded_train)
+            else:
+                try:
+                    df_train_raw = pd.read_excel(uploaded_train, sheet_name=0, header=1)
+                except Exception:
+                    uploaded_train.seek(0)
+                    df_train_raw = pd.read_excel(uploaded_train, sheet_name=0)
+                if len(df_train_raw.columns) < 14:
+                    uploaded_train.seek(0)
+                    df_train_raw = pd.read_excel(uploaded_train, sheet_name=0)
+            
             df_train_raw = df_train_raw.dropna(how='all')
             
             st.info(f"Memproses {len(df_train_raw)} baris data training...")
@@ -1739,11 +1757,11 @@ def show_prediction_page():
     
     with tabs[1]:
         st.markdown("### 📂 Prediksi Massal")
-        st.markdown("Upload file Excel berisi data siswa untuk diprediksi secara massal sekaligus.")
+        st.markdown("Upload file Excel/CSV berisi data siswa untuk diprediksi secara massal sekaligus.")
         
         with st.expander("📌 Panduan Format File untuk Prediksi Massal", expanded=False):
             st.markdown("""
-            **Format file Excel (.xlsx) yang wajib dipenuhi:**
+            **Format file (.xlsx atau .csv) yang wajib dipenuhi:**
             
             | Kolom | Tipe Data | Keterangan | Contoh |
             |-------|-----------|------------|--------|
@@ -1755,18 +1773,23 @@ def show_prediction_page():
             
             **⚠️ Penting:**
             - Kategori **PEKERJAAN ORANG TUA** harus sesuai dengan yang ada di data training.
-            - File harus dalam format **.xlsx** (bukan .xls).
+            - Untuk upload dari HP, disarankan menggunakan format **.csv**.
             """)
         
         uploaded_file = st.file_uploader(
-            "Upload File Excel untuk Prediksi Massal",
-            type=['xlsx'],
-            help="Upload file .xlsx dengan kolom sesuai panduan di atas"
+            "Upload File untuk Prediksi Massal (.xlsx atau .csv)",
+            type=['xlsx', 'csv'],
+            help="Upload file .xlsx atau .csv dengan kolom sesuai panduan di atas"
         )
         
         if uploaded_file is not None:
             try:
-                df_input = pd.read_excel(uploaded_file)
+                # Deteksi tipe file dan baca sesuai format
+                if uploaded_file.name.endswith('.csv'):
+                    df_input = pd.read_csv(uploaded_file)
+                else:
+                    df_input = pd.read_excel(uploaded_file)
+                
                 st.success(f"✅ File berhasil dimuat: **{len(df_input)}** baris × **{len(df_input.columns)}** kolom")
                 
                 st.markdown("#### 📋 Preview Data Input (10 baris pertama)")
@@ -1915,12 +1938,12 @@ def show_landing():
     
     st.markdown("### 🔄 Alur Kerja Sistem")
     steps = [
-        ("📂", "Upload Dataset", "Unggah file Excel (.xlsx) data BSM"),
+        ("📂", "Upload Dataset", "Unggah file Excel/CSV data BSM"),
         ("⚙️", "Preprocessing", "Missing value, duplikasi, encoding, standardisasi"),
         ("📊", "Visualisasi", "Eksplorasi data dengan grafik Plotly"),
         ("🤖", "Training Model", "Latih Gaussian Naive Bayes"),
         ("📈", "Evaluasi", "Accuracy, Precision, Recall, F1-Score"),
-        ("🔮", "Prediksi Baru", "Prediksi manual / batch dari file Excel"),
+        ("🔮", "Prediksi Baru", "Prediksi manual / batch dari file"),
         ("💾", "Export", "Unduh hasil ke file Excel profesional"),
     ]
     for icon, title, desc in steps:
@@ -2073,17 +2096,29 @@ def show_main():
         render_sticky_header("📂", "Upload & Preprocessing Dataset")
         
         uploaded = st.file_uploader(
-            "Upload file Excel (.xlsx) data BSM",
-            type=["xlsx"],
-            help="Format: .xlsx | Header di baris ke-2 | Kolom sesuai template BSM"
+            "Upload file (.xlsx atau .csv) data BSM",
+            type=["xlsx", "csv"],
+            help="Format: .xlsx / .csv | Header di baris ke-2 (xlsx) atau baris pertama (csv)"
         )
         
         if uploaded is not None:
             try:
-                df_raw = pd.read_excel(uploaded, sheet_name=0, header=1)
-                if len(df_raw.columns) < 14:
-                    uploaded.seek(0)
-                    df_raw = pd.read_excel(uploaded, sheet_name=0)
+                # Deteksi tipe file dan baca sesuai format
+                if uploaded.name.endswith('.csv'):
+                    df_raw = pd.read_csv(uploaded)
+                else:
+                    # Excel: pertahankan logika awal dengan fallback
+                    try:
+                        df_raw = pd.read_excel(uploaded, sheet_name=0, header=1)
+                    except Exception:
+                        uploaded.seek(0)
+                        df_raw = pd.read_excel(uploaded, sheet_name=0)
+                    # Jika setelah dibaca header=1 jumlah kolom < 14, baca ulang tanpa header
+                    if len(df_raw.columns) < 14:
+                        uploaded.seek(0)
+                        df_raw = pd.read_excel(uploaded, sheet_name=0)
+                
+                # Hapus baris kosong sepenuhnya
                 df_raw = df_raw.dropna(how='all')
                 st.session_state.df_raw = df_raw
                 
@@ -2127,6 +2162,7 @@ def show_main():
                     
             except Exception as e:
                 st.error(f"❌ Error membaca file: {e}")
+                st.info("Pastikan file memang berisi data BSM dan tidak rusak. Untuk HP, coba gunakan format CSV.")
         
         with st.expander("📌 Panduan Format File", expanded=False):
             st.markdown("""
@@ -2141,6 +2177,11 @@ def show_main():
             | JUMLAH TANGGUNGAN | integer | Jumlah tanggungan keluarga |
             | STATUS RUMAH | string | Milik Sendiri / Kontrak/sewa |
             | LABEL | string | Ya / Tidak |
+            
+            **Tips untuk pengguna HP:**
+            - Konversi file Excel ke CSV terlebih dahulu (buka di Excel → Save As → CSV UTF-8)
+            - Upload file CSV melalui browser HP
+            - Pastikan ukuran file tidak terlalu besar (di bawah 100MB)
             """)
 
     elif page == "📊 Visualisasi":
@@ -2352,7 +2393,7 @@ def show_main():
             st.warning("⚠️ Testing 0% - Gunakan upload data testing manual di Dashboard.")
         else:
             res = st.session_state.train_results
-            th = make_plotly_theme()  # DEFINISIKAN th DI SINI
+            th = make_plotly_theme()
             
             render_metric_cards([
                 {"icon": "🏋️", "label": "Akurasi Training", "value": f"{res['train_acc']*100:.2f}%"},
