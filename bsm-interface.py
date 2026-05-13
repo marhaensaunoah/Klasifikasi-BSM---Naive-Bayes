@@ -31,381 +31,710 @@ st.set_page_config(
 )
 
 # ─────────────────────────────────────────────────────────────
-# CUSTOM CSS MEGA MODERN (Premium Enterprise UI)
+# CUSTOM CSS — NEO BRUTALISM + Y2K MODERN WEB (PERBAIKAN WARNA)
 # ─────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-/* ===== GLOBAL RESET & VARIABLES ===== */
+/* ===== GLOBAL VARIABLES ===== */
 :root {
-    --em-50:#ecfdf5;--em-100:#d1fae5;--em-200:#a7f3d0;--em-300:#6ee7b7;
-    --em-400:#34d399;--em-500:#10b981;--em-600:#059669;--em-700:#047857;
-    --em-800:#065f46;--em-900:#064e3b;
-    --sl-50:#f8fafc;--sl-100:#f1f5f9;--sl-200:#e2e8f0;--sl-400:#94a3b8;
-    --sl-500:#64748b;--sl-600:#475569;--sl-700:#334155;--sl-800:#1e293b;
-    --white:#ffffff;
-    --r:16px;--r-sm:10px;--r-xs:6px;
-    --sh-sm:0 1px 3px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.1);
-    --sh:0 4px 16px rgba(0,0,0,0.06);--sh-md:0 8px 30px rgba(0,0,0,0.1);
-    --sh-lg:0 20px 50px rgba(0,0,0,0.15);
+    --blue: #2146FF;
+    --yellow: #FFE500;
+    --black: #000000;
+    --white: #FFFFFF;
+    --gray: #F2F2F2;
+    --cyan: #00F5FF;
+    --red: #FF2D2D;
+    --lime: #B6FF00;
+    --purple: #9B00FF;
+    --border: 3px solid #000;
+    --border-thick: 5px solid #000;
+    --shadow: 6px 6px 0px #000;
+    --shadow-sm: 4px 4px 0px #000;
+    --shadow-lg: 8px 8px 0px #000;
+    --shadow-hover: 2px 2px 0px #000;
 }
 
 html, body {
-    font-family: 'Inter', sans-serif;
-    background: #f8fafc;
+    font-family: 'Space Grotesk', sans-serif;
+    background: #F2F2F2;
 }
+
+/* dot grid background */
+.main {
+    background-image: radial-gradient(circle, #00000018 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-color: #F2F2F2;
+}
+
 .main .block-container {
-    padding: 1.5rem 2.5rem 3rem;
+    padding: 1.2rem 2rem 3rem;
     max-width: 1440px;
 }
 
-/* ===== STICKY HEADER - TETAP TERLIHAT SAAT SCROLL ===== */
+/* ===== STICKY HEADER ===== */
 .sticky-header {
     position: fixed;
     top: 3.8rem;
     left: 18rem;
     right: 1rem;
     z-index: 999999;
-
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    padding: 1rem 1.5rem;
-    border-radius: 16px;
-    border: 1px solid rgba(226,232,240,0.8);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-
+    background: var(--yellow);
+    border: var(--border-thick);
+    box-shadow: var(--shadow);
+    padding: 0.85rem 1.4rem;
     display: flex;
     align-items: center;
     gap: 12px;
 }
-.sticky-header-spacer {
-    height: 100px;
-}
+.sticky-header-spacer { height: 100px; }
 .sticky-header-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    background: linear-gradient(135deg, #059669, #10b981);
-    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: var(--blue);
+    border: var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: white;
-    box-shadow: 0 6px 18px rgba(5,150,105,0.3);
 }
 .sticky-header-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #0f172a;
-    letter-spacing: -0.3px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
     white-space: nowrap;
 }
-
-/* Responsif saat sidebar collapse */
 @media (max-width: 768px) {
-    .sticky-header {
-        left: 1rem;
-        right: 1rem;
-        top: 4rem;
-    }
+    .sticky-header { left: 1rem; right: 1rem; top: 4rem; }
 }
 
 /* ===== SIDEBAR ===== */
-[data-testid="stSidebar"]>div:first-child {
-    background: linear-gradient(175deg, #064e3b 0%, #065f46 60%, #0f172a 100%);
+[data-testid="stSidebar"] > div:first-child {
+    background: var(--blue) !important;
+    border-right: 5px solid var(--black) !important;
 }
 [data-testid="stSidebar"] * {
-    color: #e2e8f0 !important;
+    color: var(--white) !important;
 }
 [data-testid="stSidebar"] label {
-    color: #6ee7b7 !important;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-size: 0.75rem;
+    color: var(--yellow) !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    font-size: 0.7rem !important;
 }
 [data-testid="stSidebar"] .stRadio > div {
-    gap: 2px;
+    gap: 4px;
     flex-direction: column;
 }
 [data-testid="stSidebar"] .stRadio label {
-    background: rgba(255,255,255,0.04) !important;
-    border-radius: 8px !important;
+    background: rgba(0,0,0,0.25) !important;
+    border: 2px solid rgba(255,255,255,0.3) !important;
     padding: 10px 14px !important;
-    font-size: 0.88rem !important;
-    font-weight: 500 !important;
-    color: #f1f5f9 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: var(--white) !important;
     text-transform: none !important;
     letter-spacing: 0 !important;
-    border: 1px solid transparent !important;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    border-radius: 0 !important;
 }
 [data-testid="stSidebar"] .stRadio label:hover {
-    background: rgba(16,185,129,0.15) !important;
-    border-color: rgba(16,185,129,0.3) !important;
+    background: var(--yellow) !important;
+    border-color: var(--black) !important;
+    color: var(--black) !important;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.5) !important;
+    transform: translate(-2px, -2px);
+}
+[data-testid="stSidebar"] .stRadio label[data-selected="true"],
+[data-testid="stSidebar"] .stRadio label[aria-checked="true"] {
+    background: var(--yellow) !important;
+    border-color: var(--black) !important;
+    color: var(--black) !important;
+    font-weight: 700 !important;
+}
+[data-testid="stSidebar"] hr {
+    border-color: rgba(255,255,255,0.3) !important;
+    border-width: 2px !important;
+}
+[data-testid="stSidebar"] .stSlider * {
+    color: var(--white) !important;
+}
+[data-testid="stSidebar"] .stButton > button {
+    background: var(--yellow) !important;
+    color: var(--black) !important;
+    border: 3px solid var(--black) !important;
+    box-shadow: 4px 4px 0 var(--black) !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-weight: 900 !important;
+    border-radius: 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    transform: translate(3px, 3px) !important;
+    box-shadow: 1px 1px 0 var(--black) !important;
+    background: var(--white) !important;
 }
 
-/* ===== HERO ===== */
+/* ===== HERO SECTION ===== */
 .hero-home {
-    background: radial-gradient(circle at 30% 20%, #065f46, #022c22);
-    border-radius: 24px;
-    padding: 3.5rem 3rem;
+    background: var(--blue);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-lg);
+    padding: 3rem 3rem 2.5rem;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 25px 60px -15px rgba(6,95,70,0.4);
     margin-bottom: 2rem;
-    border: 1px solid rgba(255,255,255,0.1);
+}
+.hero-home::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: var(--yellow);
+    border: 4px solid var(--black);
+    transform: rotate(15deg);
+    pointer-events: none;
+    opacity: 0.35;
 }
 .hero-home::after {
     content: '';
     position: absolute;
-    top: -100px; right: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(52,211,153,0.3) 0%, transparent 70%);
+    bottom: -30px; right: 120px;
+    width: 120px; height: 120px;
+    background: var(--cyan);
+    border: 4px solid var(--black);
     border-radius: 50%;
     pointer-events: none;
+    opacity: 0.3;
 }
 .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    color: #d1fae5;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 100px;
-    padding: 6px 18px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-bottom: 1.5rem;
+    background: var(--yellow);
+    color: var(--black);
+    border: 3px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    padding: 5px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.4rem;
 }
 .hero-title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #ffffff !important;
-    line-height: 1.1;
-    margin: 0 0 1rem;
-    letter-spacing: -0.5px;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-size: 3rem !important;
+    font-weight: 900 !important;
+    color: var(--white) !important;
+    line-height: 1.05 !important;
+    margin: 0 0 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.5px !important;
 }
 .hero-sub {
-    font-size: 1.1rem;
-    color: #a7f3d0;
-    max-width: 700px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.88);
+    max-width: 680px;
     line-height: 1.6;
     margin-bottom: 2rem;
-}
-.glass-btn {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 12px;
-    padding: 12px 32px;
-    font-weight: 600;
-    font-size: 1rem;
-    color: white;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    text-decoration: none;
-}
-.glass-btn:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
-/* ===== CARDS MODERN ===== */
+/* ===== CARDS (BRUTALIST) ===== */
 .modern-card {
     background: var(--white);
-    border-radius: var(--r);
-    padding: 1.8rem;
-    box-shadow: var(--sh);
-    border: 1px solid var(--sl-200);
-    transition: all 0.2s;
+    border: var(--border-thick);
+    box-shadow: var(--shadow);
+    padding: 1.6rem;
+    transition: transform 0.12s, box-shadow 0.12s;
     height: 100%;
+    position: relative;
+}
+.modern-card::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px;
+    right: -6px; bottom: -6px;
+    background: var(--yellow);
+    z-index: -1;
+    border: 2px solid var(--black);
 }
 .modern-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--sh-md);
-    border-color: var(--em-300);
+    transform: translate(-3px, -3px);
+    box-shadow: var(--shadow-lg);
 }
 .metric-icon {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.9rem;
+    margin-bottom: 0.6rem;
 }
 .metric-label {
-    font-size: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
     font-weight: 700;
-    color: var(--sl-400);
+    color: #555;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
 }
 .metric-value {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--em-700);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--blue);
     line-height: 1;
-    font-family: 'JetBrains Mono', monospace;
 }
 .metric-desc {
-    font-size: 0.8rem;
-    color: var(--sl-500);
-    margin-top: 6px;
+    font-size: 0.78rem;
+    color: #555;
+    margin-top: 5px;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 /* ===== PREDICTION CARD ===== */
 .prediction-card {
     background: var(--white);
-    border-radius: var(--r);
+    border: var(--border-thick);
+    box-shadow: var(--shadow);
     padding: 2rem;
-    box-shadow: var(--sh);
-    border: 2px solid var(--sl-200);
     text-align: center;
-    transition: all 0.3s;
 }
 .prediction-card.success {
-    border-color: var(--em-500);
-    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    border-color: var(--black);
+    background: #D1FAE5;
+    color: #065F46;
 }
 .prediction-card.danger {
-    border-color: #f87171;
-    background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%);
+    border-color: var(--black);
+    background: #FEE2E2;
+    color: #991B1B;
 }
-.prediction-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.prediction-icon { 
+    font-size: 3.5rem; 
+    margin-bottom: 1rem; 
 }
 .prediction-result {
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
     margin-bottom: 0.5rem;
 }
-.prediction-prob {
-    font-size: 1rem;
-    color: var(--sl-500);
-    margin-top: 1rem;
+.prediction-prob { 
+    font-size: 1rem; 
+    color: #333; 
+    margin-top: 1rem; 
+}
+.prediction-prob .prob-value {
+    color: var(--black);
 }
 .badge-penerima {
-    background: var(--em-100);
-    color: var(--em-700);
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    background: #D1FAE5;
+    color: #065F46;
+    border: 3px solid #065F46;
+    box-shadow: 3px 3px 0 #065F46;
+    padding: 5px 18px;
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
     display: inline-block;
 }
 .badge-tidak {
-    background: #fecaca;
-    color: #991b1b;
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 3px solid #991B1B;
+    box-shadow: 3px 3px 0 #991B1B;
+    padding: 5px 18px;
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
     display: inline-block;
 }
 
-/* ===== ALERTS ===== */
-.alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 14px 18px; color: #166534; font-size: 0.9rem; }
-.alert-info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 14px 18px; color: #1e40af; font-size: 0.9rem; }
-.alert-warning { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 14px 18px; color: #92400e; font-size: 0.9rem; }
-.alert-error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 14px 18px; color: #991b1b; font-size: 0.9rem; }
+/* ===== FORM & INPUT — NEO BRUTALISM WARM PALETTE ===== */
 
-/* ===== BUTTONS ===== */
+/* ── Base state: warm cream background ── */
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox > div > div,
+textarea {
+    background: #FFF8D6 !important;
+    color: #111111 !important;
+    border: 3px solid #000 !important;
+    border-radius: 0 !important;
+    box-shadow: 3px 3px 0 #000 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    transition: all 0.12s ease !important;
+}
+
+/* ── Hover state: slightly brighter cream ── */
+.stTextInput input:hover,
+.stNumberInput input:hover,
+.stSelectbox > div > div:hover,
+textarea:hover {
+    background: #FFFBE6 !important;
+    box-shadow: 4px 4px 0 #000 !important;
+}
+
+/* ── Focus state: bold yellow tactile feedback ── */
+.stTextInput input:focus,
+.stNumberInput input:focus,
+.stSelectbox > div > div:focus-within,
+textarea:focus {
+    background: #FFE500 !important;
+    border-color: #2146FF !important;
+    box-shadow: 6px 6px 0 #000 !important;
+    transform: translate(-2px, -2px) !important;
+    outline: none !important;
+}
+
+/* ── Selectbox inner elements ── */
+.stSelectbox div[data-baseweb="select"] {
+    background: transparent !important;
+}
+.stSelectbox span {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* ── Placeholder: soft & lightweight ── */
+.stTextInput input::placeholder,
+.stNumberInput input::placeholder,
+textarea::placeholder {
+    color: #666666 !important;
+    font-weight: 500 !important;
+}
+
+/* ── Number input stepper buttons ── */
+.stNumberInput [data-testid="stNumberInputStepUp"],
+.stNumberInput [data-testid="stNumberInputStepDown"] {
+    background: #FFF8D6 !important;
+    border: 2px solid #000 !important;
+    border-radius: 0 !important;
+    color: #111111 !important;
+    transition: all 0.1s ease !important;
+}
+.stNumberInput [data-testid="stNumberInputStepUp"]:hover,
+.stNumberInput [data-testid="stNumberInputStepDown"]:hover {
+    background: #FFE500 !important;
+}
+
+/* ── File uploader ── */
+.stFileUploader > div {
+    border: 3px dashed var(--black) !important;
+    border-radius: 0 !important;
+    background: #F8F5E9 !important;
+    box-shadow: 4px 4px 0 var(--black) !important;
+    transition: all 0.12s ease !important;
+}
+.stFileUploader > div:hover {
+    background: #FFF8D6 !important;
+    box-shadow: 6px 6px 0 var(--black) !important;
+}
+
+/* ── Input label: uppercase mono style ── */
+.stTextInput label,
+.stNumberInput label,
+.stSelectbox label {
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #333333 !important;
+}
+
+/* ===== ALERTS ===== */
+.alert-success {
+    background: #D1FAE5;
+    border: 3px solid #065F46;
+    box-shadow: 4px 4px 0 #065F46;
+    padding: 12px 18px;
+    color: #065F46;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.alert-info {
+    background: #DBEAFE;
+    border: 3px solid #1E40AF;
+    box-shadow: 4px 4px 0 #1E40AF;
+    padding: 12px 18px;
+    color: #1E40AF;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.alert-warning {
+    background: #FEF3C7;
+    border: 3px solid #92400E;
+    box-shadow: 4px 4px 0 #92400E;
+    padding: 12px 18px;
+    color: #92400E;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.alert-error {
+    background: #FEE2E2;
+    border: 3px solid #991B1B;
+    box-shadow: 4px 4px 0 #991B1B;
+    padding: 12px 18px;
+    color: #991B1B;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ===== BUTTONS (GLOBAL) ===== */
 .stButton > button {
-    background: linear-gradient(135deg, #047857, #059669) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 12px !important;
-    font-weight: 600 !important;
-    padding: 12px 24px !important;
-    transition: all 0.2s !important;
-    box-shadow: 0 4px 14px rgba(5,150,105,0.25) !important;
-    letter-spacing: 0.3px;
+    background: var(--blue) !important;
+    color: var(--white) !important;
+    border: 3px solid var(--black) !important;
+    border-radius: 0 !important;
+    box-shadow: 5px 5px 0 var(--black) !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    padding: 11px 22px !important;
+    transition: transform 0.1s, box-shadow 0.1s !important;
 }
 .stButton > button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 12px 28px rgba(5,150,105,0.35) !important;
+    transform: translate(4px, 4px) !important;
+    box-shadow: 1px 1px 0 var(--black) !important;
+    background: var(--yellow) !important;
+    color: var(--black) !important;
+}
+.stButton > button:active {
+    transform: translate(5px, 5px) !important;
+    box-shadow: 0px 0px 0 var(--black) !important;
 }
 .stDownloadButton > button {
-    background: white !important;
-    color: #047857 !important;
-    border: 2px solid #10b981 !important;
-    border-radius: 12px !important;
-    font-weight: 600 !important;
-    transition: all 0.2s !important;
+    background: var(--yellow) !important;
+    color: var(--black) !important;
+    border: 3px solid var(--black) !important;
+    border-radius: 0 !important;
+    box-shadow: 5px 5px 0 var(--black) !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    transition: transform 0.1s, box-shadow 0.1s !important;
 }
 .stDownloadButton > button:hover {
-    background: #ecfdf5 !important;
-    transform: translateY(-1px) !important;
+    transform: translate(4px, 4px) !important;
+    box-shadow: 1px 1px 0 var(--black) !important;
 }
 
 /* ===== TABS ===== */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 6px;
-    background: #f1f5f9;
-    padding: 5px;
-    border-radius: 12px;
+    gap: 4px;
+    background: var(--black);
+    padding: 4px;
+    border: 3px solid var(--black);
+    box-shadow: 5px 5px 0 var(--black);
+    border-radius: 0 !important;
 }
 .stTabs [data-baseweb="tab"] {
-    border-radius: 10px !important;
-    padding: 8px 18px !important;
-    font-weight: 600 !important;
-    font-size: 0.85rem !important;
-    color: #475569 !important;
+    border-radius: 0 !important;
+    padding: 8px 16px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.82rem !important;
+    color: rgba(255,255,255,0.7) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border: 2px solid transparent !important;
 }
 .stTabs [aria-selected="true"] {
-    background: white !important;
-    color: #047857 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+    background: var(--yellow) !important;
+    color: var(--black) !important;
+    border: 2px solid var(--black) !important;
+    font-weight: 900 !important;
+}
+.stTabs [data-baseweb="tab"]:hover {
+    background: rgba(255,255,255,0.15) !important;
+    color: var(--white) !important;
 }
 
 /* ===== PROGRESS ===== */
 .stProgress > div > div > div {
-    background: linear-gradient(90deg, #059669, #34d399) !important;
-    border-radius: 100px !important;
+    background: var(--blue) !important;
+    border-radius: 0 !important;
+    border: 1px solid var(--black) !important;
+}
+.stProgress > div > div {
+    background: var(--gray) !important;
+    border: 2px solid var(--black) !important;
+    border-radius: 0 !important;
+    box-shadow: 3px 3px 0 var(--black) !important;
+}
+
+/* ===== EXPANDER ===== */
+.streamlit-expanderHeader {
+    background: var(--blue) !important;
+    border: 3px solid var(--black) !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 4px 0 var(--black) !important;
+    color: var(--white) !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+}
+.streamlit-expanderContent {
+    border: 3px solid var(--black) !important;
+    border-top: none !important;
+    border-radius: 0 !important;
+    background: var(--white) !important;
+}
+
+/* ===== DATAFRAME ===== */
+.stDataFrame {
+    border: 3px solid var(--black) !important;
+    box-shadow: 5px 5px 0 var(--black) !important;
+}
+[data-testid="stDataFrame"] th {
+    background: var(--blue) !important;
+    color: var(--white) !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    border: 2px solid var(--black) !important;
+}
+[data-testid="stDataFrame"] td {
+    border: 1px solid #ddd !important;
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-size: 0.82rem !important;
+    color: var(--black) !important;
+}
+[data-testid="stDataFrame"] tr:nth-child(even) td {
+    background: rgba(33, 70, 255, 0.05) !important;
+}
+[data-testid="stDataFrame"] tr:hover td {
+    background: rgba(255, 229, 0, 0.3) !important;
+}
+
+/* ===== METRIC WIDGET ===== */
+[data-testid="metric-container"] {
+    background: var(--white);
+    border: 3px solid var(--black);
+    box-shadow: var(--shadow);
+    padding: 16px !important;
+}
+[data-testid="metric-container"] label {
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #555 !important;
+}
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    font-family: 'Archivo Black', sans-serif !important;
+    color: var(--blue) !important;
+    font-weight: 900 !important;
 }
 
 /* ===== FOOTER ===== */
 .footer {
-    background: #1e293b;
-    color: #cbd5e1;
-    border-radius: 20px;
+    background: var(--black);
+    color: var(--white);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-lg);
     padding: 2rem;
     text-align: center;
     margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+.footer::before {
+    content: '//BSM//';
+    position: absolute;
+    top: 50%; left: -10px;
+    transform: translateY(-50%);
+    font-family: 'Bungee', sans-serif;
+    font-size: 5rem;
+    color: rgba(255,229,0,0.08);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.2em;
 }
 .footer-brand {
-    color: #34d399;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--yellow);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 .footer-divider {
-    width: 50px;
-    height: 2px;
-    background: #10b981;
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
     margin: 12px auto;
-    border-radius: 2px;
+}
+
+/* ===== INFO/WARNING/ERROR NATIVE ===== */
+.stAlert {
+    border: 3px solid var(--black) !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 4px 0 var(--black) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 600 !important;
 }
 
 /* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #a7f3d0; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #34d399; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--gray); border: 2px solid var(--black); }
+::-webkit-scrollbar-thumb { background: var(--blue); border: 2px solid var(--black); }
+::-webkit-scrollbar-thumb:hover { background: var(--yellow); border: 2px solid var(--black); }
+
+/* ===== HEADINGS IN MAIN ===== */
+.main h1, .main h2, .main h3 {
+    font-family: 'Archivo Black', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+}
+.main h3 {
+    border-left: 5px solid var(--blue);
+    padding-left: 10px;
+    margin-top: 1.5rem;
+}
+
+/* ===== SPINNER ===== */
+.stSpinner > div {
+    border-top-color: var(--blue) !important;
+}
 
 /* ===== HIDE STREAMLIT BRANDING ===== */
 #MainMenu { visibility: hidden; }
 footer { visibility: hidden; }
 .stDeployButton { display: none; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes floatY {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.modern-card { animation: fadeInUp 0.3s ease both; }
+.hero-home { animation: fadeInUp 0.4s ease both; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -467,13 +796,50 @@ def alert(msg: str, kind: str = "success"):
     st.markdown(f'<div class="alert-{kind}">{icons.get(kind, "•")} {msg}</div>', unsafe_allow_html=True)
 
 def make_plotly_theme():
-    """Return consistent Plotly theme dict. TANPA yaxis/xaxis agar tidak conflict."""
+    """Return consistent Plotly theme dict — DARK MODE BLACK BACKGROUND."""
     return dict(
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="Inter, sans-serif", color="#334155"),
-        margin=dict(l=20, r=20, t=40, b=20),
+        paper_bgcolor="#111111",
+        plot_bgcolor="#111111",
+        font=dict(family="Space Grotesk, sans-serif", color="#E5E7EB", size=12),
+        margin=dict(l=20, r=20, t=50, b=20),
+        title_font=dict(family="Archivo Black, sans-serif", size=15, color="#FFFFFF"),
+        legend_font=dict(color="#E5E7EB"),
+        xaxis=dict(
+            showgrid=True, 
+            gridcolor="#333333", 
+            linecolor="#555555", 
+            linewidth=2,
+            tickfont=dict(family="IBM Plex Mono, monospace", size=11, color="#BBBBBB"),
+            title_font=dict(color="#E5E7EB")
+        ),
+        yaxis=dict(
+            showgrid=True, 
+            gridcolor="#333333", 
+            linecolor="#555555", 
+            linewidth=2,
+            tickfont=dict(family="IBM Plex Mono, monospace", size=11, color="#BBBBBB"),
+            title_font=dict(color="#E5E7EB")
+        ),
+        colorway=["#60A5FA", "#F87171", "#34D399", "#FBBF24", "#A78BFA", "#22D3EE"]
     )
+
+def make_plotly_colors():
+    """Return color scheme untuk visualisasi konsisten di dark background."""
+    return {
+        'penerima': '#34D399',           # Emerald green
+        'tidak_penerima': '#F87171',     # Red
+        'primary': '#60A5FA',             # Blue
+        'secondary': '#A78BFA',           # Purple
+        'accent': '#FBBF24',              # Amber
+        'info': '#22D3EE',                # Cyan
+        'gradient_blue': ['#1E3A5F', '#1E40AF', '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE'],
+        'gradient_red': ['#5F1A1A', '#991B1B', '#DC2626', '#EF4444', '#F87171', '#FCA5A5', '#FECACA'],
+        'gradient_green': ['#1A3F32', '#065F46', '#059669', '#10B981', '#34D399', '#6EE7B7', '#A7F3D0'],
+        'pie_colors': ['#60A5FA', '#F87171', '#34D399', '#FBBF24', '#A78BFA'],
+        'bar_blue': '#3B82F6',
+        'bar_red': '#EF4444',
+        'bar_green': '#10B981',
+    }
 
 # ─────────────────────────────────────────────────────────────
 # PREPROCESSING ENGINE
@@ -622,8 +988,6 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
     print("="*80)
     
     if test_size == 0.0:
-        # LOGIKA SPLIT DATA: Testing 0%
-        # Semua data digunakan untuk training, tidak ada testing otomatis
         X_train, X_test = X.copy(), pd.DataFrame(columns=X.columns)
         y_train, y_test = y.copy(), pd.Series(dtype=y.dtype)
         
@@ -634,14 +998,11 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
         print(f"    ⚠️ Tidak ada data testing otomatis")
         print("\n" + "="*80 + "\n")
     elif test_size == 1.0:
-        # LOGIKA SPLIT DATA: Testing 100%
-        # Semua data dianggap testing, tidak bisa training
         print(f"\n    Total data valid : {len(X)}")
         print(f"    ⚠️ Testing 100% - Semua data testing, tidak bisa training")
         print(f"    ⚠️ Harap upload data training manual")
         print("\n" + "="*80 + "\n")
         
-        # Kembalikan hasil kosong
         return {
             'model': None,
             'X': X, 'y': y,
@@ -665,7 +1026,6 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
             ])
         }
     else:
-        # LOGIKA SPLIT DATA: Normal (5-95%)
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=test_size, random_state=42, stratify=y
         )
@@ -686,7 +1046,6 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
         print(f"    - Penerima (1)       : {test_dist.get(1, 0)}")
         print("\n" + "="*80 + "\n")
 
-    # Training model hanya jika ada data training
     if test_size < 1.0:
         model = GaussianNB()
         model.fit(X_train, y_train)
@@ -727,9 +1086,7 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
         model = None
         train_acc = None
 
-    # Handle hasil berdasarkan test_size
     if test_size == 0.0:
-        # Testing 0% - tidak ada data testing
         print("\n" + "="*80)
         print("EVALUASI MODEL")
         print("="*80)
@@ -758,7 +1115,6 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
             ])
         }
     elif test_size == 1.0:
-        # Testing 100% - tidak bisa training
         print("\n" + "="*80)
         print("EVALUASI MODEL")
         print("="*80)
@@ -787,7 +1143,6 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
             ])
         }
     else:
-        # Normal - ada data testing
         y_pred = model.predict(X_test)
         y_pred_proba = model.predict_proba(X_test)
         test_acc = accuracy_score(y_test, y_pred)
@@ -857,7 +1212,6 @@ def run_training(df: pd.DataFrame, test_size: float = 0.2):
         print("PROSES PREDIKSI SELESAI")
         print("="*80 + "\n")
 
-        # Hitung metrik evaluasi
         TP = cm[1, 1]; TN = cm[0, 0]
         FP = cm[0, 1]; FN = cm[1, 0]
         
@@ -1043,7 +1397,6 @@ def export_preprocessing_excel(df: pd.DataFrame, le_pekerjaan: LabelEncoder) -> 
     for i, w in enumerate([5, 28, 28, 10, 12, 22, 18, 22, 16, 16, 18, 18, 8, 14], 1):
         ws.column_dimensions[get_column_letter(i)].width = w
 
-    # Sheet Mapping
     wm = wb.create_sheet("Mapping Encoding")
     wm.merge_cells('A1:C1')
     wm['A1'].value = "MAPPING ENCODING"
@@ -1389,32 +1742,23 @@ def handle_training_only_mode():
     st.info("""
     ℹ️ Karena **Testing = 0%**, semua data digunakan untuk training dan tidak ada data testing otomatis.
     
-    Silakan upload file Excel/CSV **berlabel** (memiliki kolom LABEL) untuk mengevaluasi model.
+    Silakan upload file Excel **berlabel** (memiliki kolom LABEL) untuk mengevaluasi model.
     File akan diproses menggunakan encoder dan scaler yang sama dari data training.
     """)
     
     uploaded_test = st.file_uploader(
-        "Upload Data Testing Manual (.xlsx atau .csv)",
-        type=['xlsx', 'csv'],
+        "Upload Data Testing Manual (.xlsx)",
+        type=['xlsx'],
         key='test_upload_training_only',
-        help="File dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
+        help="File Excel dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
     )
     
     if uploaded_test is not None:
         try:
-            # Deteksi tipe file dan baca sesuai format
-            if uploaded_test.name.endswith('.csv'):
-                df_test_raw = pd.read_csv(uploaded_test)
-            else:
-                try:
-                    df_test_raw = pd.read_excel(uploaded_test, sheet_name=0, header=1)
-                except Exception:
-                    uploaded_test.seek(0)
-                    df_test_raw = pd.read_excel(uploaded_test, sheet_name=0)
-                if len(df_test_raw.columns) < 14:
-                    uploaded_test.seek(0)
-                    df_test_raw = pd.read_excel(uploaded_test, sheet_name=0)
-            
+            df_test_raw = pd.read_excel(uploaded_test, sheet_name=0, header=1)
+            if len(df_test_raw.columns) < 14:
+                uploaded_test.seek(0)
+                df_test_raw = pd.read_excel(uploaded_test, sheet_name=0)
             df_test_raw = df_test_raw.dropna(how='all')
             
             st.success(f"✅ File berhasil dimuat: {len(df_test_raw)} baris")
@@ -1488,16 +1832,17 @@ def handle_training_only_mode():
             st.markdown("#### 📊 Confusion Matrix")
             cm = eval_results['cm']
             th = make_plotly_theme()
+            colors = make_plotly_colors()
             fig = go.Figure(data=go.Heatmap(
                 z=cm,
                 x=['Predicted: Tidak', 'Predicted: Ya'],
                 y=['Actual: Tidak', 'Actual: Ya'],
                 text=[[str(v) for v in row] for row in cm],
                 texttemplate="%{text}",
-                textfont={"size": 22, "family": "JetBrains Mono", "color": "white"},
-                colorscale=[[0, "#ecfdf5"], [0.4, "#34d399"], [1, "#065f46"]],
+                textfont={"size": 22, "family": "JetBrains Mono", "color": "#FFFFFF"},
+                colorscale=[[0, "#1E293B"], [0.5, "#3B82F6"], [1, "#93C5FD"]],
                 showscale=True,
-                colorbar=dict(title="Jumlah")
+                colorbar=dict(title="Jumlah", tickfont=dict(color="#FFFFFF"), title_font=dict(color="#FFFFFF"))
             ))
             fig.update_layout(**th, height=380)
             st.plotly_chart(fig, use_container_width=True)
@@ -1538,32 +1883,23 @@ def handle_testing_only_mode():
     st.warning("""
     ⚠️ Karena **Testing = 100%**, semua data dianggap sebagai data testing dan tidak ada data training.
     
-    Silakan upload file Excel/CSV untuk digunakan sebagai **data training**. 
+    Silakan upload file Excel untuk digunakan sebagai **data training**. 
     Setelah model dilatih, dataset awal akan digunakan sebagai data testing untuk evaluasi.
     """)
     
     uploaded_train = st.file_uploader(
-        "Upload Data Training Manual (.xlsx atau .csv)",
-        type=['xlsx', 'csv'],
+        "Upload Data Training Manual (.xlsx)",
+        type=['xlsx'],
         key='train_upload_testing_only',
-        help="File dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
+        help="File Excel dengan kolom lengkap termasuk LABEL (Ya/Tidak)"
     )
     
     if uploaded_train is not None:
         try:
-            # Deteksi tipe file dan baca sesuai format
-            if uploaded_train.name.endswith('.csv'):
-                df_train_raw = pd.read_csv(uploaded_train)
-            else:
-                try:
-                    df_train_raw = pd.read_excel(uploaded_train, sheet_name=0, header=1)
-                except Exception:
-                    uploaded_train.seek(0)
-                    df_train_raw = pd.read_excel(uploaded_train, sheet_name=0)
-                if len(df_train_raw.columns) < 14:
-                    uploaded_train.seek(0)
-                    df_train_raw = pd.read_excel(uploaded_train, sheet_name=0)
-            
+            df_train_raw = pd.read_excel(uploaded_train, sheet_name=0, header=1)
+            if len(df_train_raw.columns) < 14:
+                uploaded_train.seek(0)
+                df_train_raw = pd.read_excel(uploaded_train, sheet_name=0)
             df_train_raw = df_train_raw.dropna(how='all')
             
             st.info(f"Memproses {len(df_train_raw)} baris data training...")
@@ -1611,16 +1947,17 @@ def handle_testing_only_mode():
                 st.markdown("#### 📊 Confusion Matrix")
                 cm = eval_results['cm']
                 th = make_plotly_theme()
+                colors = make_plotly_colors()
                 fig = go.Figure(data=go.Heatmap(
                     z=cm,
                     x=['Predicted: Tidak', 'Predicted: Ya'],
                     y=['Actual: Tidak', 'Actual: Ya'],
                     text=[[str(v) for v in row] for row in cm],
                     texttemplate="%{text}",
-                    textfont={"size": 22, "family": "JetBrains Mono", "color": "white"},
-                    colorscale=[[0, "#ecfdf5"], [0.4, "#34d399"], [1, "#065f46"]],
+                    textfont={"size": 22, "family": "JetBrains Mono", "color": "#FFFFFF"},
+                    colorscale=[[0, "#1E293B"], [0.5, "#3B82F6"], [1, "#93C5FD"]],
                     showscale=True,
-                    colorbar=dict(title="Jumlah")
+                    colorbar=dict(title="Jumlah", tickfont=dict(color="#FFFFFF"), title_font=dict(color="#FFFFFF"))
                 ))
                 fig.update_layout(**th, height=380)
                 st.plotly_chart(fig, use_container_width=True)
@@ -1682,14 +2019,14 @@ def show_prediction_page():
             col1, col2 = st.columns(2)
             
             with col1:
-                kelas = st.selectbox("Kelas", options=["7", "8", "9"])
-                pendapatan = st.number_input("Pendapatan Orang Tua (Rp)", min_value=0, value=2000000, step=100000, format="%d")
+                kelas = st.selectbox("📚 Kelas", options=["7", "8", "9"])
+                pendapatan = st.number_input("💰 Pendapatan Orang Tua (Rp)", min_value=0, value=2000000, step=100000, format="%d")
                 pekerjaan_options = list(st.session_state.preprocess_info['le_pekerjaan'].classes_)
-                pekerjaan = st.selectbox("Pekerjaan Orang Tua", options=pekerjaan_options)
+                pekerjaan = st.selectbox("💼 Pekerjaan Orang Tua", options=pekerjaan_options)
             
             with col2:
-                tanggungan = st.number_input("Jumlah Tanggungan", min_value=0, max_value=20, value=3, step=1)
-                status_rumah = st.selectbox("Status Rumah", options=["Milik Sendiri", "Kontrak/sewa"])
+                tanggungan = st.number_input("👨‍👩‍👧‍👦 Jumlah Tanggungan", min_value=0, max_value=20, value=3, step=1)
+                status_rumah = st.selectbox("🏠 Status Rumah", options=["Milik Sendiri", "Kontrak/sewa"])
             
             submitted = st.form_submit_button("🔮 Prediksi Sekarang", use_container_width=True, type="primary")
         
@@ -1712,56 +2049,48 @@ def show_prediction_page():
                     icon = "✅"
                     result_text = "PENERIMA BSM"
                     badge_class = "badge-penerima"
-                    result_color = "#059669"
                 else:
                     card_class = "danger"
                     icon = "❌"
                     result_text = "TIDAK PENERIMA BSM"
                     badge_class = "badge-tidak"
-                    result_color = "#dc2626"
                 
                 st.markdown(f"""
                 <div class="prediction-card {card_class}">
                     <div class="prediction-icon">{icon}</div>
-                    <div class="prediction-result" style="color: {result_color};">{result_text}</div>
+                    <div class="prediction-result">{result_text}</div>
                     <div style="margin: 1rem 0;">
                         <span class="{badge_class}">{result_text}</span>
                     </div>
-                    <div class="prediction-prob">
-                        <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem;">
-                            <div>
-                                <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Probabilitas Tidak</div>
-                                <div style="font-size: 2rem; font-weight: 700; color: #dc2626;">{probabilities[0]*100:.2f}%</div>
-                            </div>
-                            <div style="border-left: 1px solid #e2e8f0; padding-left: 3rem;">
-                                <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Probabilitas Ya</div>
-                                <div style="font-size: 2rem; font-weight: 700; color: #059669;">{probabilities[1]*100:.2f}%</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 """, unsafe_allow_html=True)
+                
+                col_prob1, col_prob2 = st.columns(2)
+                with col_prob1:
+                    st.metric("Probabilitas TIDAK", f"{probabilities[0]*100:.2f}%")
+                with col_prob2:
+                    st.metric("Probabilitas YA", f"{probabilities[1]*100:.2f}%")
                 
                 with st.expander("📋 Detail Input & Perhitungan", expanded=False):
                     col_a, col_b = st.columns(2)
                     with col_a:
                         st.markdown("**Data Input:**")
-                        st.markdown(f"- Kelas: {kelas}")
-                        st.markdown(f"- Pendapatan: Rp {pendapatan:,.0f}")
-                        st.markdown(f"- Pekerjaan: {pekerjaan}")
+                        st.markdown(f"- 📚 Kelas: **{kelas}**")
+                        st.markdown(f"- 💰 Pendapatan: **Rp {pendapatan:,.0f}**")
+                        st.markdown(f"- 💼 Pekerjaan: **{pekerjaan}**")
                     with col_b:
                         st.markdown("**Hasil Encoding & Standardisasi:**")
-                        st.markdown(f"- Tanggungan: {tanggungan}")
-                        st.markdown(f"- Status Rumah: {status_rumah}")
-                        st.markdown(f"- Z-Score Pendapatan: {features[0][1]:.6f}")
+                        st.markdown(f"- 👨‍👩‍👧‍👦 Tanggungan: **{tanggungan}**")
+                        st.markdown(f"- 🏠 Status Rumah: **{status_rumah}**")
+                        st.markdown(f"- 📐 Z-Score Pendapatan: **{features[0][1]:.6f}**")
     
     with tabs[1]:
         st.markdown("### 📂 Prediksi Massal")
-        st.markdown("Upload file Excel/CSV berisi data siswa untuk diprediksi secara massal sekaligus.")
+        st.markdown("Upload file Excel berisi data siswa untuk diprediksi secara massal sekaligus.")
         
         with st.expander("📌 Panduan Format File untuk Prediksi Massal", expanded=False):
             st.markdown("""
-            **Format file (.xlsx atau .csv) yang wajib dipenuhi:**
+            **Format file Excel (.xlsx) yang wajib dipenuhi:**
             
             | Kolom | Tipe Data | Keterangan | Contoh |
             |-------|-----------|------------|--------|
@@ -1773,23 +2102,18 @@ def show_prediction_page():
             
             **⚠️ Penting:**
             - Kategori **PEKERJAAN ORANG TUA** harus sesuai dengan yang ada di data training.
-            - Untuk upload dari HP, disarankan menggunakan format **.csv**.
+            - File harus dalam format **.xlsx** (bukan .xls).
             """)
         
         uploaded_file = st.file_uploader(
-            "Upload File untuk Prediksi Massal (.xlsx atau .csv)",
-            type=['xlsx', 'csv'],
-            help="Upload file .xlsx atau .csv dengan kolom sesuai panduan di atas"
+            "Upload File Excel untuk Prediksi Massal",
+            type=['xlsx'],
+            help="Upload file .xlsx dengan kolom sesuai panduan di atas"
         )
         
         if uploaded_file is not None:
             try:
-                # Deteksi tipe file dan baca sesuai format
-                if uploaded_file.name.endswith('.csv'):
-                    df_input = pd.read_csv(uploaded_file)
-                else:
-                    df_input = pd.read_excel(uploaded_file)
-                
+                df_input = pd.read_excel(uploaded_file)
                 st.success(f"✅ File berhasil dimuat: **{len(df_input)}** baris × **{len(df_input.columns)}** kolom")
                 
                 st.markdown("#### 📋 Preview Data Input (10 baris pertama)")
@@ -1869,31 +2193,46 @@ def show_landing():
     
     st.markdown("""
     <div class="hero-home">
+        <div style="position:absolute;top:18px;right:18px;width:60px;height:60px;
+                    background:#FFE500;border:3px solid #000;transform:rotate(12deg);
+                    box-shadow:3px 3px 0 #000;"></div>
+        <div style="position:absolute;bottom:24px;right:80px;width:40px;height:40px;
+                    border:3px solid #FFE500;border-radius:50%;"></div>
+        <div style="position:absolute;top:50%;left:calc(100% - 160px);
+                    font-family:'Bungee',cursive;font-size:6rem;color:rgba(255,255,255,0.06);
+                    line-height:1;pointer-events:none;white-space:nowrap;">BSM</div>
         <div class="hero-badge">
-            <span>🎓</span> MACHINE LEARNING • NAIVE BAYES
+            <span>🎓</span> MACHINE LEARNING &nbsp;·&nbsp; NAIVE BAYES &nbsp;·&nbsp; 2024
         </div>
-        <div class="hero-title">Sistem Klasifikasi Penerima<br>Bantuan Siswa Miskin (BSM)</div>
+        <div class="hero-title">Sistem Klasifikasi<br>Penerima BSM</div>
         <div class="hero-sub">
-            Dashboard cerdas berbasis <strong>Gaussian Naive Bayes</strong> untuk membantu pengambilan 
-            keputusan pemberian bantuan secara objektif, transparan, dan terukur menggunakan 
-            data BSM 2022-2024.
+            Dashboard cerdas berbasis <strong>Gaussian Naive Bayes</strong> — membantu pengambilan 
+            keputusan pemberian bantuan secara objektif, transparan, dan terukur.
         </div>
-        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:2.5rem;">
-            <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:14px 24px; color:white; border:1px solid rgba(255,255,255,0.12);">
-                <span style="font-weight:700; font-size:1.5rem;">5</span><br>
-                <span style="font-size:0.8rem; color:#a7f3d0;">Fitur Input</span>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:2rem;">
+            <div style="background:#FFE500;border:3px solid #000;box-shadow:3px 3px 0 #000;
+                        padding:12px 20px;color:#000;min-width:90px;text-align:center;">
+                <div style="font-family:'Bungee',cursive;font-size:1.8rem;line-height:1;">5</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;
+                            text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Fitur Input</div>
             </div>
-            <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:14px 24px; color:white; border:1px solid rgba(255,255,255,0.12);">
-                <span style="font-weight:700; font-size:1.5rem;">2</span><br>
-                <span style="font-size:0.8rem; color:#a7f3d0;">Kelas Output</span>
+            <div style="background:#00F5FF;border:3px solid #000;box-shadow:3px 3px 0 #000;
+                        padding:12px 20px;color:#000;min-width:90px;text-align:center;">
+                <div style="font-family:'Bungee',cursive;font-size:1.8rem;line-height:1;">2</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;
+                            text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Kelas Output</div>
             </div>
-            <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:14px 24px; color:white; border:1px solid rgba(255,255,255,0.12);">
-                <span style="font-weight:700; font-size:1.5rem;">GNB</span><br>
-                <span style="font-size:0.8rem; color:#a7f3d0;">Algoritma</span>
+            <div style="background:#B6FF00;border:3px solid #000;box-shadow:3px 3px 0 #000;
+                        padding:12px 20px;color:#000;min-width:90px;text-align:center;">
+                <div style="font-family:'Bungee',cursive;font-size:1.8rem;line-height:1;">GNB</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;
+                            text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Algoritma</div>
             </div>
-            <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:14px 24px; color:white; border:1px solid rgba(255,255,255,0.12);">
-                <span style="font-weight:700; font-size:1.5rem;">100%</span><br>
-                <span style="font-size:0.8rem; color:#a7f3d0;">Open Source</span>
+            <div style="background:#fff;border:3px solid #000;box-shadow:3px 3px 0 #000;
+                        padding:12px 20px;color:#000;min-width:90px;text-align:center;">
+                <div style="font-family:'Bungee',cursive;font-size:1.8rem;line-height:1;color:#2146FF;">100%</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;
+                            text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Open Source</div>
             </div>
         </div>
     </div>
@@ -1938,23 +2277,27 @@ def show_landing():
     
     st.markdown("### 🔄 Alur Kerja Sistem")
     steps = [
-        ("📂", "Upload Dataset", "Unggah file Excel/CSV data BSM"),
+        ("📂", "Upload Dataset", "Unggah file Excel (.xlsx) data BSM"),
         ("⚙️", "Preprocessing", "Missing value, duplikasi, encoding, standardisasi"),
         ("📊", "Visualisasi", "Eksplorasi data dengan grafik Plotly"),
         ("🤖", "Training Model", "Latih Gaussian Naive Bayes"),
         ("📈", "Evaluasi", "Accuracy, Precision, Recall, F1-Score"),
-        ("🔮", "Prediksi Baru", "Prediksi manual / batch dari file"),
+        ("🔮", "Prediksi Baru", "Prediksi manual / batch dari file Excel"),
         ("💾", "Export", "Unduh hasil ke file Excel profesional"),
     ]
     for icon, title, desc in steps:
         st.markdown(f"""
-        <div style="display:flex; align-items:center; gap:16px; padding:12px 18px; 
-                    background:white; border-radius:12px; margin-bottom:8px;
-                    border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-            <div style="font-size:1.5rem; width:40px; text-align:center;">{icon}</div>
+        <div style="display:flex; align-items:center; gap:14px; padding:12px 16px;
+                    background:#fff; border:3px solid #000; box-shadow:4px 4px 0 #000;
+                    margin-bottom:8px; transition:transform 0.15s;">
+            <div style="font-size:1.6rem; width:44px; text-align:center;
+                        background:#FFE500; border:2px solid #000; padding:6px;
+                        box-shadow:2px 2px 0 #000; flex-shrink:0;">{icon}</div>
             <div>
-                <div style="font-weight:600; color:#1e293b; font-size:0.95rem;">{title}</div>
-                <div style="font-size:0.8rem; color:#64748b;">{desc}</div>
+                <div style="font-family:'Archivo Black',sans-serif; font-weight:900; color:#000;
+                            font-size:0.88rem; text-transform:uppercase; letter-spacing:0.04em;">{title}</div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:#555;
+                            margin-top:2px;">{desc}</div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1969,11 +2312,14 @@ def show_landing():
     
     st.markdown("""
     <div class="footer">
-        <div class="footer-brand">🎓 Sistem Klasifikasi Penerima BSM</div>
+        <div class="footer-brand">🎓 SISTEM KLASIFIKASI PENERIMA BSM</div>
         <div class="footer-divider"></div>
-        <div>Gaussian Naive Bayes · Machine Learning Dashboard · Streamlit</div>
-        <div style="margin-top:0.4rem;color:#64748b;font-size:0.75rem;">
-            Dibuat untuk keperluan akademik dan penelitian
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;letter-spacing:0.06em;">
+            GAUSSIAN NAIVE BAYES &nbsp;·&nbsp; MACHINE LEARNING &nbsp;·&nbsp; STREAMLIT
+        </div>
+        <div style="margin-top:0.5rem;font-family:'IBM Plex Mono',monospace;
+                    color:rgba(255,255,255,0.4);font-size:0.7rem;letter-spacing:0.08em;">
+            // DIBUAT UNTUK KEPERLUAN AKADEMIK DAN PENELITIAN //
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1987,10 +2333,14 @@ def show_main():
     
     with st.sidebar:
         st.markdown("""
-        <div style="text-align:center; padding:1.2rem 0 0.8rem;">
-            <div style="font-size:2.5rem;">🎓</div>
-            <div style="font-weight:800; font-size:1.05rem; margin-top:4px; color:white;">Klasifikasi BSM</div>
-            <div style="font-size:0.72rem; color:#6ee7b7; margin-top:2px;">Naive Bayes Dashboard</div>
+        <div style="text-align:center; padding:1.4rem 0 1rem;">
+            <div style="font-size:2.8rem; filter: drop-shadow(3px 3px 0 #000);">🎓</div>
+            <div style="font-family:'Bungee',cursive; font-size:1.1rem; margin-top:6px; color:#FFE500;
+                        letter-spacing:0.08em; text-shadow: 2px 2px 0 #000;">KLASIFIKASI BSM</div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.65rem; color:rgba(255,255,255,0.7);
+                        margin-top:4px; letter-spacing:0.12em; text-transform:uppercase;">// NAIVE BAYES //</div>
+            <div style="width:60%; height:3px; background:#FFE500; margin:10px auto 0;
+                        border:1px solid #000;"></div>
         </div>
         """, unsafe_allow_html=True)
         st.markdown("---")
@@ -2083,7 +2433,6 @@ def show_main():
                 
                 render_metric_cards(metrics_display)
             
-            # Tangani mode split data khusus
             test_size = st.session_state.test_size
             if test_size == 0.0 and st.session_state.train_results is not None:
                 handle_training_only_mode()
@@ -2096,29 +2445,17 @@ def show_main():
         render_sticky_header("📂", "Upload & Preprocessing Dataset")
         
         uploaded = st.file_uploader(
-            "Upload file (.xlsx atau .csv) data BSM",
-            type=["xlsx", "csv"],
-            help="Format: .xlsx / .csv | Header di baris ke-2 (xlsx) atau baris pertama (csv)"
+            "Upload file Excel (.xlsx) data BSM",
+            type=["xlsx"],
+            help="Format: .xlsx | Header di baris ke-2 | Kolom sesuai template BSM"
         )
         
         if uploaded is not None:
             try:
-                # Deteksi tipe file dan baca sesuai format
-                if uploaded.name.endswith('.csv'):
-                    df_raw = pd.read_csv(uploaded)
-                else:
-                    # Excel: pertahankan logika awal dengan fallback
-                    try:
-                        df_raw = pd.read_excel(uploaded, sheet_name=0, header=1)
-                    except Exception:
-                        uploaded.seek(0)
-                        df_raw = pd.read_excel(uploaded, sheet_name=0)
-                    # Jika setelah dibaca header=1 jumlah kolom < 14, baca ulang tanpa header
-                    if len(df_raw.columns) < 14:
-                        uploaded.seek(0)
-                        df_raw = pd.read_excel(uploaded, sheet_name=0)
-                
-                # Hapus baris kosong sepenuhnya
+                df_raw = pd.read_excel(uploaded, sheet_name=0, header=1)
+                if len(df_raw.columns) < 14:
+                    uploaded.seek(0)
+                    df_raw = pd.read_excel(uploaded, sheet_name=0)
                 df_raw = df_raw.dropna(how='all')
                 st.session_state.df_raw = df_raw
                 
@@ -2162,7 +2499,6 @@ def show_main():
                     
             except Exception as e:
                 st.error(f"❌ Error membaca file: {e}")
-                st.info("Pastikan file memang berisi data BSM dan tidak rusak. Untuk HP, coba gunakan format CSV.")
         
         with st.expander("📌 Panduan Format File", expanded=False):
             st.markdown("""
@@ -2177,11 +2513,6 @@ def show_main():
             | JUMLAH TANGGUNGAN | integer | Jumlah tanggungan keluarga |
             | STATUS RUMAH | string | Milik Sendiri / Kontrak/sewa |
             | LABEL | string | Ya / Tidak |
-            
-            **Tips untuk pengguna HP:**
-            - Konversi file Excel ke CSV terlebih dahulu (buka di Excel → Save As → CSV UTF-8)
-            - Upload file CSV melalui browser HP
-            - Pastikan ukuran file tidak terlalu besar (di bawah 100MB)
             """)
 
     elif page == "📊 Visualisasi":
@@ -2192,6 +2523,7 @@ def show_main():
         else:
             df = st.session_state.df_processed
             th = make_plotly_theme()
+            colors = make_plotly_colors()
             
             tabs = st.tabs(["🥧 Distribusi Label", "💰 Pendapatan", "💼 Pekerjaan", "🏠 Status Rumah", "🎓 Kelas", "📊 Korelasi"])
             
@@ -2199,54 +2531,84 @@ def show_main():
                 col1, col2 = st.columns([1, 1])
                 with col1:
                     label_counts = df['LABEL'].value_counts()
-                    fig = px.pie(names=label_counts.index, values=label_counts.values,
-                                color_discrete_sequence=["#059669", "#f87171"], hole=0.45,
-                                title="Distribusi Label Penerima BSM")
-                    fig.update_traces(textposition='outside', textinfo='label+percent+value', textfont_size=13)
-                    fig.update_layout(**th, height=420)
+                    fig = px.pie(
+                        names=label_counts.index, 
+                        values=label_counts.values,
+                        color_discrete_sequence=[colors['penerima'], colors['tidak_penerima']], 
+                        hole=0.45,
+                        title="Distribusi Label Penerima BSM"
+                    )
+                    fig.update_traces(
+                        textposition='outside', 
+                        textinfo='label+percent+value', 
+                        textfont_size=13,
+                        textfont_color='#FFFFFF'
+                    )
+                    fig.update_layout(
+                        **th, 
+                        height=420,
+                        legend=dict(font=dict(color='#FFFFFF'))
+                    )
                     st.plotly_chart(fig, use_container_width=True)
                 with col2:
                     st.markdown("<br>", unsafe_allow_html=True)
-                    st.metric("Total Penerima", int((df['LABEL_ENC']==1).sum()))
-                    st.metric("Total Tidak Penerima", int((df['LABEL_ENC']==0).sum()))
+                    col_met1, col_met2 = st.columns(2)
+                    with col_met1:
+                        st.metric("Total Penerima", int((df['LABEL_ENC']==1).sum()))
+                    with col_met2:
+                        st.metric("Total Tidak Penerima", int((df['LABEL_ENC']==0).sum()))
                     st.metric("Rasio", f"{(df['LABEL_ENC']==1).sum()/len(df)*100:.1f}% Penerima")
             
             with tabs[1]:
                 col1, col2 = st.columns(2)
                 with col1:
-                    fig1 = px.histogram(df, x='PENDAPATAN ORANG TUA', nbins=30,
-                                       color_discrete_sequence=["#059669"],
-                                       title="Histogram Pendapatan (Rupiah)")
+                    fig1 = px.histogram(
+                        df, x='PENDAPATAN ORANG TUA', nbins=30,
+                        color_discrete_sequence=[colors['primary']],
+                        title="Histogram Pendapatan (Rupiah)"
+                    )
                     fig1.update_layout(**th, height=380)
                     st.plotly_chart(fig1, use_container_width=True)
                 with col2:
-                    fig2 = px.histogram(df, x='PENDAPATAN_ZSCORE', nbins=30,
-                                       color_discrete_sequence=["#34d399"],
-                                       title="Histogram Pendapatan (Z-Score)")
+                    fig2 = px.histogram(
+                        df, x='PENDAPATAN_ZSCORE', nbins=30,
+                        color_discrete_sequence=[colors['info']],
+                        title="Histogram Pendapatan (Z-Score)"
+                    )
                     fig2.update_layout(**th, height=380)
                     st.plotly_chart(fig2, use_container_width=True)
                 
-                fig3 = px.box(df, x='LABEL', y='PENDAPATAN ORANG TUA', color='LABEL',
-                             color_discrete_map={'Ya': '#059669', 'Tidak': '#f87171'},
-                             title="Box Plot Pendapatan per Status Penerima")
+                fig3 = px.box(
+                    df, x='LABEL', y='PENDAPATAN ORANG TUA', color='LABEL',
+                    color_discrete_map={'Ya': colors['penerima'], 'Tidak': colors['tidak_penerima']},
+                    title="Box Plot Pendapatan per Status Penerima"
+                )
                 fig3.update_layout(**th, height=380)
                 st.plotly_chart(fig3, use_container_width=True)
             
             with tabs[2]:
                 pek_cnt = df['PEKERJAAN ORANG TUA'].value_counts().reset_index()
                 pek_cnt.columns = ['Pekerjaan', 'Jumlah']
-                fig = px.bar(pek_cnt, y='Pekerjaan', x='Jumlah', orientation='h',
-                           color='Jumlah', color_continuous_scale='Greens',
-                           title="Frekuensi Pekerjaan Orang Tua", text='Jumlah')
-                fig.update_traces(textposition='outside')
+                fig = px.bar(
+                    pek_cnt, y='Pekerjaan', x='Jumlah', orientation='h',
+                    color='Jumlah', 
+                    color_continuous_scale=colors['gradient_blue'],
+                    title="Frekuensi Pekerjaan Orang Tua", 
+                    text='Jumlah'
+                )
+                fig.update_traces(textposition='outside', textfont_color='#FFFFFF')
                 fig.update_layout(**th, height=max(350, len(pek_cnt)*38),
                                  coloraxis_showscale=False, yaxis_categoryorder='total ascending')
                 st.plotly_chart(fig, use_container_width=True)
                 
                 pek_label = df.groupby(['PEKERJAAN ORANG TUA', 'LABEL']).size().reset_index(name='Jumlah')
-                fig2 = px.bar(pek_label, y='PEKERJAAN ORANG TUA', x='Jumlah', color='LABEL',
-                            orientation='h', color_discrete_map={'Ya':'#059669','Tidak':'#f87171'},
-                            barmode='stack', title="Pekerjaan vs Status Penerima")
+                fig2 = px.bar(
+                    pek_label, y='PEKERJAAN ORANG TUA', x='Jumlah', color='LABEL',
+                    orientation='h', 
+                    color_discrete_map={'Ya': colors['penerima'], 'Tidak': colors['tidak_penerima']},
+                    barmode='stack', 
+                    title="Pekerjaan vs Status Penerima"
+                )
                 fig2.update_layout(**th, height=max(350, len(pek_cnt)*38), yaxis_categoryorder='total ascending')
                 st.plotly_chart(fig2, use_container_width=True)
             
@@ -2254,31 +2616,42 @@ def show_main():
                 col1, col2 = st.columns(2)
                 with col1:
                     sr_cnt = df['STATUS RUMAH'].value_counts()
-                    fig1 = px.pie(names=sr_cnt.index, values=sr_cnt.values,
-                                 color_discrete_sequence=["#059669", "#34d399"],
-                                 hole=0.4, title="Distribusi Status Rumah")
+                    fig1 = px.pie(
+                        names=sr_cnt.index, values=sr_cnt.values,
+                        color_discrete_sequence=[colors['primary'], colors['info']],
+                        hole=0.4, 
+                        title="Distribusi Status Rumah"
+                    )
+                    fig1.update_traces(textposition='inside', textinfo='label+percent', textfont_color='#FFFFFF')
                     fig1.update_layout(**th, height=350)
                     st.plotly_chart(fig1, use_container_width=True)
                 with col2:
                     sr_label = df.groupby(['STATUS RUMAH', 'LABEL']).size().reset_index(name='Jumlah')
-                    fig2 = px.bar(sr_label, x='STATUS RUMAH', y='Jumlah', color='LABEL',
-                                barmode='group', color_discrete_map={'Ya':'#059669','Tidak':'#f87171'},
-                                title="Status Rumah vs Status Penerima")
+                    fig2 = px.bar(
+                        sr_label, x='STATUS RUMAH', y='Jumlah', color='LABEL',
+                        barmode='group', 
+                        color_discrete_map={'Ya': colors['penerima'], 'Tidak': colors['tidak_penerima']},
+                        title="Status Rumah vs Status Penerima"
+                    )
                     fig2.update_layout(**th, height=350)
                     st.plotly_chart(fig2, use_container_width=True)
             
             with tabs[4]:
                 kl_cnt = df.groupby(['KELAS', 'LABEL']).size().reset_index(name='Jumlah')
-                fig = px.bar(kl_cnt, x='KELAS', y='Jumlah', color='LABEL', barmode='group',
-                           color_discrete_map={'Ya':'#059669','Tidak':'#f87171'},
-                           title="Distribusi Kelas berdasarkan Status Penerima")
+                fig = px.bar(
+                    kl_cnt, x='KELAS', y='Jumlah', color='LABEL', barmode='group',
+                    color_discrete_map={'Ya': colors['penerima'], 'Tidak': colors['tidak_penerima']},
+                    title="Distribusi Kelas berdasarkan Status Penerima"
+                )
                 fig.update_layout(**th, height=400)
                 st.plotly_chart(fig, use_container_width=True)
                 
-                fig2 = px.histogram(df, x='JUMLAH TANGGUNGAN', color='LABEL',
-                                   barmode='overlay', opacity=0.75,
-                                   color_discrete_map={'Ya':'#059669','Tidak':'#f87171'},
-                                   title="Distribusi Jumlah Tanggungan per Status Penerima")
+                fig2 = px.histogram(
+                    df, x='JUMLAH TANGGUNGAN', color='LABEL',
+                    barmode='overlay', opacity=0.75,
+                    color_discrete_map={'Ya': colors['penerima'], 'Tidak': colors['tidak_penerima']},
+                    title="Distribusi Jumlah Tanggungan per Status Penerima"
+                )
                 fig2.update_layout(**th, height=380)
                 st.plotly_chart(fig2, use_container_width=True)
             
@@ -2287,8 +2660,12 @@ def show_main():
                            'JUMLAH TANGGUNGAN','STATUS RUMAH_ENC','LABEL_ENC']
                 num_avail = [c for c in num_cols if c in df.columns]
                 corr = df[num_avail].corr().round(3)
-                fig = px.imshow(corr, text_auto=True, color_continuous_scale='Greens',
-                              title="Heatmap Korelasi Fitur", aspect='auto')
+                fig = px.imshow(
+                    corr, text_auto=True, 
+                    color_continuous_scale=colors['gradient_blue'],
+                    title="Heatmap Korelasi Fitur", 
+                    aspect='auto'
+                )
                 fig.update_layout(**th, height=500)
                 st.plotly_chart(fig, use_container_width=True)
 
@@ -2394,6 +2771,7 @@ def show_main():
         else:
             res = st.session_state.train_results
             th = make_plotly_theme()
+            colors = make_plotly_colors()
             
             render_metric_cards([
                 {"icon": "🏋️", "label": "Akurasi Training", "value": f"{res['train_acc']*100:.2f}%"},
@@ -2431,9 +2809,10 @@ def show_main():
                     y=['Actual: Tidak', 'Actual: Ya'],
                     text=[[str(v) for v in row] for row in cm],
                     texttemplate="%{text}",
-                    textfont={"size": 22, "family": "JetBrains Mono", "color": "white"},
-                    colorscale=[[0, "#ecfdf5"], [0.4, "#34d399"], [1, "#065f46"]],
-                    showscale=True, colorbar=dict(title="Jumlah")
+                    textfont={"size": 22, "family": "JetBrains Mono", "color": "#FFFFFF"},
+                    colorscale=[[0, "#1E293B"], [0.5, "#3B82F6"], [1, "#93C5FD"]],
+                    showscale=True, 
+                    colorbar=dict(title="Jumlah", tickfont=dict(color="#FFFFFF"), title_font=dict(color="#FFFFFF"))
                 ))
                 fig.update_layout(**th, title="Confusion Matrix", height=420)
                 st.plotly_chart(fig, use_container_width=True)
@@ -2447,9 +2826,10 @@ def show_main():
                 fig1 = px.bar(
                     x=list(metrics.keys()), y=[v*100 for v in metrics.values()],
                     text=[f"{v*100:.1f}%" for v in metrics.values()],
-                    color_discrete_sequence=["#059669"]*len(metrics),
+                    color_discrete_sequence=[colors['primary']]*len(metrics),
                     title="Perbandingan Semua Metrik (%)"
                 )
+                fig1.update_traces(textfont_color='#FFFFFF')
                 fig1.update_layout(**th, yaxis_title="Nilai (%)", height=400)
                 st.plotly_chart(fig1, use_container_width=True)
 
@@ -2562,13 +2942,16 @@ def show_main():
         ]
         for icon, name, desc in tech:
             st.markdown(f"""
-            <div style="display:flex; align-items:center; gap:16px; padding:12px 18px; 
-                        background:white; border-radius:12px; margin-bottom:8px;
-                        border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-                <div style="font-size:1.5rem; width:40px; text-align:center;">{icon}</div>
+            <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; 
+                        background:#fff; border:3px solid #000; box-shadow:4px 4px 0 #000;
+                        margin-bottom:8px;">
+                <div style="font-size:1.6rem; width:44px; text-align:center;
+                            background:#2146FF; border:2px solid #000; padding:6px;
+                            box-shadow:2px 2px 0 #000; flex-shrink:0;">{icon}</div>
                 <div>
-                    <div style="font-weight:600; color:#1e293b;">{name}</div>
-                    <div style="font-size:0.8rem; color:#64748b;">{desc}</div>
+                    <div style="font-family:'Archivo Black',sans-serif; font-weight:900; color:#000;
+                                font-size:0.88rem; text-transform:uppercase;">{name}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:#555;">{desc}</div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -2576,11 +2959,14 @@ def show_main():
     # Footer
     st.markdown("""
     <div class="footer">
-        <div class="footer-brand">🎓 Sistem Klasifikasi Penerima BSM</div>
+        <div class="footer-brand">🎓 SISTEM KLASIFIKASI PENERIMA BSM</div>
         <div class="footer-divider"></div>
-        <div>Gaussian Naive Bayes · Machine Learning Dashboard · Streamlit</div>
-        <div style="margin-top:0.4rem;color:#64748b;font-size:0.75rem;">
-            Dibuat untuk keperluan akademik dan penelitian
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;letter-spacing:0.06em;">
+            GAUSSIAN NAIVE BAYES &nbsp;·&nbsp; MACHINE LEARNING &nbsp;·&nbsp; STREAMLIT
+        </div>
+        <div style="margin-top:0.5rem;font-family:'IBM Plex Mono',monospace;
+                    color:rgba(255,255,255,0.4);font-size:0.7rem;letter-spacing:0.08em;">
+            // DIBUAT UNTUK KEPERLUAN AKADEMIK DAN PENELITIAN //
         </div>
     </div>
     """, unsafe_allow_html=True)
